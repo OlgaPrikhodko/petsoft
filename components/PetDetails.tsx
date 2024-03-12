@@ -32,6 +32,8 @@ function EmptyView() {
 }
 
 function TopBar({ pet }: { pet: Pet }) {
+  const { handleCheckoutPet } = usePetContext();
+
   return (
     <div className="border-light flex items-center border-b bg-white px-8 py-5">
       <Image
@@ -45,7 +47,12 @@ function TopBar({ pet }: { pet: Pet }) {
 
       <div className="ml-auto space-x-2">
         <PetButton actionType="edit">Edit</PetButton>
-        <PetButton actionType="checkout">Checkout</PetButton>
+        <PetButton
+          actionType="checkout"
+          onClick={() => handleCheckoutPet(pet.id)}
+        >
+          Checkout
+        </PetButton>
       </div>
     </div>
   );
