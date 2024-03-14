@@ -4,7 +4,6 @@ import BackgroundPattern from "@/components/BackgroundPattern";
 import PetContextProvider from "@/contexts/PetContextProvider";
 import SearchContextProvider from "@/contexts/SearchContextProvider";
 import prisma from "@/lib/db";
-import { Pet } from "@/lib/types";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const pets = await prisma.pet.findMany();
