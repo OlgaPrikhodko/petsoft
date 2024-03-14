@@ -4,6 +4,8 @@ import Image from "next/image";
 import { usePetContext } from "@/lib/hooks";
 import { Pet } from "@/lib/types";
 import PetButton from "./PetButton";
+import { deletePet } from "@/actions/actions";
+import { useTransition } from "react";
 
 export default function PetDetails() {
   const { selectedPet } = usePetContext();
@@ -33,9 +35,10 @@ function EmptyView() {
 
 function TopBar({ pet }: { pet: Pet }) {
   const { handleCheckoutPet } = usePetContext();
+  const [isPending, startTransition] = useTransition();
 
   return (
-    <div className="border-light flex items-center border-b bg-white px-8 py-5">
+    <div className="flex items-center border-b border-light bg-white px-8 py-5">
       <Image
         src={pet?.imageUrl}
         alt="Selected pet image"
@@ -49,7 +52,12 @@ function TopBar({ pet }: { pet: Pet }) {
         <PetButton actionType="edit">Edit</PetButton>
         <PetButton
           actionType="checkout"
-          onClick={() => handleCheckoutPet(pet.id)}
+          disabled={isPending}
+          onClick={async () => {
+            startTransition(async () => {
+              await deletePet(pet.id);
+            });
+          }}
         >
           Checkout
         </PetButton>
@@ -77,7 +85,7 @@ function PetInfo({ pet }: { pet: Pet }) {
 
 function PetNotes({ pet }: { pet: Pet }) {
   return (
-    <section className="border-light mx-8 mb-9 flex-1 rounded-md border bg-white px-7 py-5">
+    <section className="mx-8 mb-9 flex-1 rounded-md border border-light bg-white px-7 py-5">
       {pet?.notes}
     </section>
   );

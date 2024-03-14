@@ -28,6 +28,8 @@ export async function addPet(formData: FormData) {
 }
 
 export async function editPet(petId: string, formData: FormData) {
+  await sleep(2000);
+
   try {
     await prisma.pet.update({
       where: { id: petId },
@@ -41,6 +43,18 @@ export async function editPet(petId: string, formData: FormData) {
     });
   } catch (error) {
     return { message: "Couldn't edit the pet" };
+  }
+
+  revalidatePath("/app", "layout");
+}
+
+export async function deletePet(petId: string) {
+  await sleep(2000);
+
+  try {
+    await prisma.pet.delete({ where: { id: petId } });
+  } catch (error) {
+    return { message: "Couldn't delete the pet" };
   }
 
   revalidatePath("/app", "layout");
