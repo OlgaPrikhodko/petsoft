@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import { usePetContext } from "@/lib/hooks";
-import { Pet } from "@/lib/types";
+import { Pet } from "@prisma/client";
 import PetButton from "./PetButton";
-import { useTransition } from "react";
 
 export default function PetDetails() {
   const { selectedPet } = usePetContext();
@@ -34,7 +33,6 @@ function EmptyView() {
 
 function TopBar({ pet }: { pet: Pet }) {
   const { handleCheckoutPet } = usePetContext();
-  const [isPending, startTransition] = useTransition();
 
   return (
     <div className="flex items-center border-b border-light bg-white px-8 py-5">
@@ -51,7 +49,6 @@ function TopBar({ pet }: { pet: Pet }) {
         <PetButton actionType="edit">Edit</PetButton>
         <PetButton
           actionType="checkout"
-          disabled={isPending}
           onClick={() => {
             handleCheckoutPet(pet.id);
           }}
