@@ -26,7 +26,16 @@ export default function PetForm({
     formState: { errors },
     trigger,
     getValues,
-  } = useForm<TPetForm>({ resolver: zodResolver(petFormSchema) });
+  } = useForm<TPetForm>({
+    resolver: zodResolver(petFormSchema),
+    defaultValues: {
+      name: selectedPet?.name,
+      ownerName: selectedPet?.name,
+      imageUrl: selectedPet?.imageUrl,
+      age: selectedPet?.age,
+      notes: selectedPet?.notes,
+    },
+  });
 
   return (
     <form
