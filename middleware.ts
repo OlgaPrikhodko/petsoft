@@ -1,0 +1,20 @@
+import { NextResponse } from "next/server";
+
+export function middleware(request: Request) {
+  console.log(request.url);
+  return NextResponse.next();
+}
+
+// from https://nextjs.org/docs/app/building-your-application/routing/middleware
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!api|_next/static|_next/image|favicon.svg).*)",
+  ],
+};
