@@ -1,4 +1,19 @@
-const SignupPage = () => {
-  return <div>SignupPage</div>;
-};
-export default SignupPage;
+import AuthForm from "@/components/AuthForm";
+import H1 from "@/components/H1";
+import Link from "next/link";
+
+export default function SignupPage() {
+  return (
+    <main>
+      <H1 className="mb-5 text-center">Sign Up</H1>
+      <AuthForm />
+
+      <p className="mt-6 text-sm text-zinc-500">
+        Already have an account?{" "}
+        <Link href="/login" className="font-medium">
+          Log in
+        </Link>
+      </p>
+    </main>
+  );
+}
