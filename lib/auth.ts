@@ -58,4 +58,4 @@ const config = {
   },
 } satisfies NextAuthConfig;
 
-export const { auth, signIn } = NextAuth(config);
+export const { auth, signIn, signOut } = NextAuth(config);
