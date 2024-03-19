@@ -1,9 +1,6 @@
-import { NextResponse } from "next/server";
+import { auth } from "./lib/auth";
 
-export function middleware(request: Request) {
-  console.log(request.url);
-  return NextResponse.next();
-}
+export default auth;
 
 // from https://nextjs.org/docs/app/building-your-application/routing/middleware
 export const config = {
