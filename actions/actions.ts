@@ -7,6 +7,7 @@ import { signIn, signOut } from "@/lib/auth";
 import { sleep } from "@/lib/utils";
 import { petFormSchema, petIdSchema } from "@/lib/validations";
 import { checkAuth, getPetById } from "@/lib/server-utils";
+import { redirect } from "next/navigation";
 
 // --------- User actions ---------------------
 
@@ -26,8 +27,13 @@ export async function signUp(formData: FormData) {
   await signIn("credentials", formData);
 }
 
-export async function logIn(formData: FormData) {
+export async function logIn(formData: unknown) {
+  if (!(formData instanceof FormData)) {
+    return { message: "Invalid form data." };
+  }
+
   await signIn("credentials", formData);
+  redirect("/app/dashboard");
 }
 
 export async function logOut() {
