@@ -6,7 +6,7 @@ import prisma from "@/lib/db";
 import { signIn, signOut } from "@/lib/auth";
 import { sleep } from "@/lib/utils";
 import { petFormSchema, petIdSchema } from "@/lib/validations";
-import { checkAuth } from "@/lib/server-utils";
+import { checkAuth, getPetById } from "@/lib/server-utils";
 
 // --------- User actions ---------------------
 
@@ -16,7 +16,7 @@ export async function signUp(formData: FormData) {
     10,
   );
 
-  const user = await prisma.user.create({
+  await prisma.user.create({
     data: {
       email: formData.get("email") as string,
       hashedPassword,
@@ -82,11 +82,7 @@ export async function editPet(petId: unknown, newPet: unknown) {
   }
 
   // authorization check
-  const pet = await prisma.pet.findUnique({
-    where: {
-      id: validatedPetId.data,
-    },
-  });
+  const pet = await getPetById(validatedPetId.data);
 
   if (!pet) {
     return { message: "Pet not found" };
@@ -124,14 +120,7 @@ export async function deletePet(petId: unknown) {
   }
 
   // authorization check (user belongs to pet)
-  const pet = await prisma.pet.findUnique({
-    where: {
-      id: validatedPetId.data,
-    },
-    select: {
-      userId: true,
-    },
-  });
+  const pet = await getPetById(validatedPetId.data);
 
   if (!pet) {
     return {
