@@ -10,6 +10,9 @@ const config = {
   providers: [
     Credentials({
       async authorize(credentials) {
+        if (!credentials) {
+          return null;
+        }
         // runs on login
         const { email, password } = credentials;
 
@@ -58,6 +61,21 @@ const config = {
       }
 
       return false;
+    },
+    jwt: ({ token, user }) => {
+      if (user) {
+        // on sign in
+        token.userId = user.id;
+      }
+
+      return token;
+    },
+    session: ({ session, token }) => {
+      if (session.user) {
+        session.user.id = token.userId;
+      }
+
+      return session;
     },
   },
 } satisfies NextAuthConfig;
