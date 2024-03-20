@@ -95,6 +95,13 @@ export async function editPet(petId: unknown, newPet: unknown) {
 export async function deletePet(petId: unknown) {
   await sleep(2000);
 
+  // authentication check
+  const session = await auth();
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  // validation
   const validatedPetId = petIdSchema.safeParse(petId);
   if (!validatedPetId.success) {
     return {
@@ -102,6 +109,27 @@ export async function deletePet(petId: unknown) {
     };
   }
 
+  // authorization check (user belongs to pet)
+  const pet = await prisma.pet.findUnique({
+    where: {
+      id: validatedPetId.data,
+    },
+    select: {
+      userId: true,
+    },
+  });
+
+  if (!pet) {
+    return {
+      message: "Pet not found",
+    };
+  }
+
+  if (pet.userId !== session.user.id) {
+    return "Not authorized.";
+  }
+
+  // database mutation
   try {
     await prisma.pet.delete({ where: { id: validatedPetId.data } });
   } catch (error) {
