@@ -52,6 +52,7 @@ const config = {
       if (!isLoggedIn && isTryingToAccessApp) {
         return false;
       }
+
       if (isLoggedIn && isTryingToAccessApp) {
         return true;
       }
