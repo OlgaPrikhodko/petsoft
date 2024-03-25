@@ -13,7 +13,7 @@ import { AuthError } from "next-auth";
 // --------- User actions ---------------------
 
 export async function signUp(prevState: unknown, formData: unknown) {
-  await sleep(2000);
+  if (process.env.NODE_ENV === "development") await sleep(2000);
   // check if formData is FormData type
   if (!(formData instanceof FormData)) {
     return { message: "Invalid form data" };
@@ -51,7 +51,7 @@ export async function signUp(prevState: unknown, formData: unknown) {
 }
 
 export async function logIn(prevState: unknown, formData: unknown) {
-  await sleep(2000);
+  if (process.env.NODE_ENV === "development") await sleep(2000);
 
   if (!(formData instanceof FormData)) {
     return { message: "Invalid form data." };
@@ -84,7 +84,7 @@ export async function logOut() {
 // --------- Pet actions ---------------------
 
 export async function addPet(newPet: unknown) {
-  await sleep(2000);
+  if (process.env.NODE_ENV === "development") await sleep(2000);
 
   const session = await checkAuth();
 
@@ -113,7 +113,7 @@ export async function addPet(newPet: unknown) {
 }
 
 export async function editPet(petId: unknown, newPet: unknown) {
-  await sleep(2000);
+  if (process.env.NODE_ENV === "development") await sleep(2000);
 
   // authentication check
   const session = await checkAuth();
@@ -153,7 +153,7 @@ export async function editPet(petId: unknown, newPet: unknown) {
 }
 
 export async function deletePet(petId: unknown) {
-  await sleep(2000);
+  if (process.env.NODE_ENV === "development") await sleep(2000);
 
   // authentication check
   const session = await checkAuth();
