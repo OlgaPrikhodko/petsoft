@@ -1,3 +1,12 @@
+## Deployed 
+
+[https://petsoft-helga.vercel.app/](https://petsoft-helga.vercel.app/)
+
+## Credentials
+
+login example@mail.com password example
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
