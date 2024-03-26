@@ -62,9 +62,11 @@ export default function PetContextProvider({
 
     const error = await deletePet(petId);
     if (error) {
-      toast.warning(error.message);
+      const errorMessage = typeof error === "string" ? error : error.message;
+      toast.warning(errorMessage);
       return;
     }
+
     setSelectedPetId(null);
   };
 
