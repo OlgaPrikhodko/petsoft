@@ -1,11 +1,57 @@
-## Deployed 
+# PetSoft Project
 
-[https://petsoft-helga.vercel.app/](https://petsoft-helga.vercel.app/)
+Welcome to the PetSoft Project! This is a comprehensive full-stack application designed for seamless pet care management. Dive into a world where managing your pet's needs becomes as easy as a few clicks.
 
-## Credentials
+## Live Deployment
 
-login example@mail.com password example
+Experience PetSoft in action:
+🔗 [Live Application](https://petsoft-helga.vercel.app)
 
+## Quick Start Credentials
+
+To get a hands-on feel of the PetSoft experience, use the following demo credentials:
+
+- **Email:** `example@mail.com`
+- **Password:** `example`
+- **Test Card for Stripe Payments:** `4242 4242 4242 4242`
+
+## Business Requirements
+
+PetSoft is built to streamline the management of pet care services. It offers:
+
+- **Pet Listing**: A comprehensive view of all pets with a flexible search function.
+- **Pet Management**: Easily create, edit, and manage pet details.
+- **User Authentication**: Robust system including signup, login, and logout functionalities.
+- **Stripe Payments**: Integrated Stripe (test-mode) for secure, hassle-free payments.
+
+## Pages
+
+Navigate through a variety of pages designed for a user-friendly experience:
+
+- **Homepage**: A captivating marketing page that outlines the features and benefits of PetSoft.
+- **Login/Signup Pages**: Secure and straightforward user onboarding.
+- **Dashboard**: A central hub for managing pet care tasks.
+- **Account Management**: Personalize and manage account details.
+
+## Technology Stack
+
+PetSoft harnesses a range of modern technologies:
+
+- **Frontend**: Next.js 14 with Server Components and Server Actions.
+- **Form Management**: Utilizing `react hook form` and `useOptimistic`, `useFormStatus` hooks for efficient form handling.
+- **Validation**: Robust data validation with Zod.
+- **UI Components**: Styled with `shadcn-ui` component library.
+- **Database Management**: Prisma for Postgres DB interactions and SQLite for development.
+- **Authentication**: Secure user handling with NextAuth.
+- **Payments**: Stripe for payment processing and Ngtok for local webhook testing from Stripe.
+
+## Get involved in the PetSoft community or start managing your pet care services today!
+
+## Acknowledgments
+
+ByteGrad for the inspiring [Professional React & Nextjs Course](https://bytegrad.com/courses/professional-react-nextjs).
+
+---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
